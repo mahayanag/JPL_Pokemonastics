@@ -89,11 +89,17 @@ bar = (ggplot(datplot, aes(x = Response, y = Prob)) +
          scale_x_discrete(name="")+
          ylab("% Expected responses - (least-square means)")+
          xlab(" ")+
-         labs(title = "(A)")+
+         labs(title = "(4A)")+
          scale_y_continuous(labels=scales::percent, breaks = c(0,0.25, 0.50,0.75))+
          geom_hline(yintercept=0.5,linetype="dashed")+
          coord_cartesian(ylim = c(0, 0.75))+
          theme_bw())
+
+jpeg("Figure4A.jpeg")
+
+bar 
+
+dev.off()
 
       ## Hist participants
 
@@ -114,9 +120,19 @@ length(unique(pp.forced$participant))
 
 hist = ggplot(pp.forced, aes(x = as.factor(SUM), y = ..count..))+
   geom_bar()+
-  labs(y = "Number of participants", x = "Expected responses across trials \nper participant", title = "(B)")+
+  labs(y = "Number of participants", x = "Expected responses across trials \nper participant", title = "(4B)")+
   theme_bw()
 
 hist = hist + theme(axis.title=element_text(size = 10))
 
+jpeg("Figure4B.jpeg")
+
+hist 
+
+dev.off()
+
+jpeg("Figure4.jpeg")
+
 grid.arrange(bar, hist, ncol = 2)
+
+dev.off()

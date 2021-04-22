@@ -129,12 +129,17 @@ vcd.plot = (ggplot(datplot, aes(x = Response, y = Prob)) +
               geom_errorbar(data=datplot, mapping=aes(x=Response, ymin=upper, ymax=lower), width=0.2, size=1, color="black") +
               scale_x_discrete(name="")+
               ylab("% Expected responses - (least-square means)")+
-              labs(title = "(A)", x = "Voiced Obstruents")+
+              labs(title = "(2A)", x = "Voiced Obstruents")+
               scale_y_continuous(labels=scales::percent, breaks = c(0,0.25, 0.50,0.75))+
               #geom_hline(yintercept=0.5,linetype="dashed")+
               coord_cartesian(ylim = c(0, 0.75))+
               theme_bw())
 
+jpeg("Figure2A.jpeg")
+
+vcd.plot
+
+dev.off()
 
 ### plot sib
 
@@ -149,11 +154,21 @@ sib.plot = (ggplot(datplot.sib, aes(x = Response, y = Prob)) +
               geom_bar(position = "dodge", stat = "identity", fill = "lightgrey")+
               geom_errorbar(data=datplot.sib, mapping=aes(x=Response, ymin=upper, ymax=lower), width=0.2, size=1, color="black") +
               scale_x_discrete(name="")+
-              labs(title = "(B)", x = "Sibilants")+
+              labs(title = "(2B)", x = "Sibilants")+
               ylab("% Expected responses - (least-square means)")+
               scale_y_continuous(labels=scales::percent, breaks = c(0,0.25, 0.50,0.75))+
               #geom_hline(yintercept=0.5,linetype="dashed")+
               coord_cartesian(ylim = c(0, 0.75))+
               theme_bw())
 
+jpeg("Figure2B.jpeg")
+
+sib.plot
+
+dev.off()
+
+jpeg("Figure2.jpeg")
+
 grid.arrange(vcd.plot, sib.plot, ncol = 2)
+
+dev.off()
